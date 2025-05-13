@@ -6,34 +6,14 @@
   <title>Generación de Proforma - Servimanef</title>
   <link rel="shortcut icon" href="../media/LOGO SH.png" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: #f0f2f5;
-    }
-    .proforma-container {
-      background: white;
-      border-radius: 15px;
-      padding: 30px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      margin-top: 20px;
-    }
-    .section-title {
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-    .total-box {
-      background-color: #f8f9fa;
-      border-radius: 10px;
-      padding: 20px;
-    }
-  </style>
+  <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 
-  <!-- Navbar -->
+  <!-- Header -->
   <nav class="navbar navbar-light bg-white shadow-sm">
     <div class="container-fluid">
-      <a class="navbar-brand" href="main menu.html">
+      <a class="navbar-brand" href="main_menu.html">
         <img src="../media/LOGO.png" alt="Logo Servimanef" style="height: 40px;">
       </a>
       <h5 class="m-0">Generación de Proforma</h5>
@@ -41,7 +21,7 @@
   </nav>
 
   <!-- Contenedor principal -->
-  <div class="container my-4">
+  <div class="container">
     <div class="proforma-container">
 
       <!-- Nombre de la Proforma -->
@@ -69,6 +49,15 @@
       <div class="mb-4">
         <h4 class="section-title">Contenido del Informe</h4>
         <textarea class="form-control" rows="5" id="contenidoInforme" placeholder="Ingresa el contenido del informe..."></textarea>
+      </div>
+
+      <!-- Selección de Informes -->
+      <div class="mb-4">
+        <h4 class="section-title">Seleccionar Informe Guardado</h4>
+        <select class="form-select" id="seleccionInforme">
+          <option selected disabled>Selecciona un informe</option>
+          <!-- Los informes se cargarán dinámicamente desde localStorage -->
+        </select>
       </div>
 
       <!-- Descripción del Servicio + Valor -->
@@ -112,8 +101,26 @@
     </div>
   </div>
 
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <small>SERVIMANEF E.I.R.L. - Todos los derechos reservados © 2025</small>
+    </div>
+  </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
   <script>
+    // Cargar informes guardados desde localStorage
+    const seleccionInforme = document.getElementById('seleccionInforme');
+    const informesGuardados = JSON.parse(localStorage.getItem('informesGuardados')) || [];
+
+    informesGuardados.forEach((informe, index) => {
+      const option = document.createElement('option');
+      option.value = index;
+      option.textContent = informe.nombre;
+      seleccionInforme.appendChild(option);
+    });
+
     // Actualizar cálculos en tiempo real
     document.getElementById('valorServicio').addEventListener('input', function() {
       const valor = parseFloat(this.value) || 0;

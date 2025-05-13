@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SERVIMANEF E.I.R.L.</title>
     <link rel="shortcut icon" href="MEDIA/LOGO SH.png" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     
 </head>
@@ -14,7 +14,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <a class="navbar-brand logo" href="index.html">
-          <img src="MEDIA/LOGO.png" alt="Logo de SERVIMANEF E.I.R.L.">
+          <img src="../media/LOGO.png" alt="Logo de SERVIMANEF E.I.R.L.">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -25,7 +25,7 @@
             <a class="nav-link nav" href="#servicios">Servicios</a>
             <a class="nav-link nav" href="#clientes">Clientes</a>
             <a class="nav-link nav" href="#acreditaciones">Acreditaciones</a>
-            <a class="nav-link btn-intranet" href="pages/intranet.html">INTRANET</a>
+            <a class="nav-link btn-intranet" href="intranet.html">INTRANET</a>
           </div>
         </div>
       </div>
@@ -41,13 +41,13 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="media/CARRUSEL1_HORIZONTAL.jpg" class="d-block w-100 rounded" alt="Imagen 1">
+        <img src="../media/CARRUSEL1_HORIZONTAL.jpg" class="d-block w-100 rounded" alt="Imagen 1">
       </div>
       <div class="carousel-item">
-        <img src="media/CARRUSEL2_HORIZONTAL.jpeg" class="d-block w-100 rounded" alt="Imagen 2">
+        <img src="../media/CARRUSEL2_HORIZONTAL.jpeg" class="d-block w-100 rounded" alt="Imagen 2">
       </div>
       <div class="carousel-item">
-        <img src="media/CARRUSEL3_HORIZONTAL.jpeg" class="d-block w-100 rounded" alt="Imagen 3">
+        <img src="../media/CARRUSEL3_HORIZONTAL.jpeg" class="d-block w-100 rounded" alt="Imagen 3">
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
@@ -87,7 +87,7 @@
         <div class="card shadow-lg rounded-4 p-4 mb-5">
           <h2 class="mb-3"><span style="color:black;">Nuestros</span> <span style="color:#E12428;">Clientes</span></h2>
           <div class="clientes-imagenes">
-            <img src="MEDIA/LOGOS-EMPRESAS.png" class="img-fluid" alt="Clientes de SERVIMANEF E.I.R.L.">
+            <img src="../media/LOGOS_EMPRESAS.png" class="img-fluid" alt="Clientes de SERVIMANEF E.I.R.L.">
           </div>
         </div>
       </section>
@@ -125,49 +125,45 @@
       <!-- Formulario de registro -->
         <div class="row mt-5">
           <div class="card shadow-lg rounded-4 p-4 mb-5">
-            <h3 class="mb-3">Formulario de Registro de Pedido de Servicio</h3>
-            <form id="pedidoForm">
-                <div class="mb-3">
+            <div class="row">
+              <div class="col-md-6 d-flex align-items-center justify-content-center">
+                <img src="../media/formulario_imagen.jpg" class="img-fluid rounded" alt="Imagen Formulario">
+              </div>
+              <div class="col-md-6">
+                <h3 class="mb-3">Formulario de Registro de Pedido de Servicio</h3>
+                <form id="pedidoForm">
+                  <div class="mb-3">
                     <label for="cliente" class="form-label">Cliente</label>
                     <input type="text" class="form-control" id="cliente" name="cliente" required>
-                </div>
-                <div class="mb-3">
+                  </div>
+                  <div class="mb-3">
                     <label for="servicio" class="form-label">Servicio</label>
                     <input type="text" class="form-control" id="servicio" name="servicio" required>
-                </div>
-                <div class="mb-3">
-                    <label for="descripcion" class="form-label">Descripción del Servicio</label>
-                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
-                </div>
-                <div class="mb-3">
+                  </div>
+                  
+                  <div class="mb-3">
                     <label for="telefono" class="form-label">Teléfono</label>
                     <input type="text" class="form-control" id="telefono" name="telefono" required>
-                </div>
-                <div class="mb-3">
+                  </div>
+                  <div class="mb-3">
                     <label for="empresa" class="form-label">Empresa</label>
                     <input type="text" class="form-control" id="empresa" name="empresa" required>
-                </div>
-                <div class="mb-3">
+                  </div>
+                  <div class="mb-3">
                     <label for="ruc" class="form-label">RUC</label>
                     <input type="text" class="form-control" id="ruc" name="ruc" required>
-                </div>
-                <div class="mb-3">
-                    <label for="direccion" class="form-label">Dirección</label>
-                    <input type="text" class="form-control" id="direccion" name="direccion" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Registrar</button>
-            </form>
+                  </div>
+                  
+                  <button type="submit" class="btn btn-primary">Registrar</button>
+                </form>
+              </div>
+            </div>
           </div>
             
         </div>
 
     </div>
 </section>
-
-<script>
-    // Función para mostrar el mensaje de confirmación al registrar el formulario
-    
-</script>
     </div>
   </cuerpo>
   <pie class="bg-light border-top mt-5 py-4">
@@ -175,7 +171,7 @@
       <div class="row align-items-center">
         <div class="col-md-8 mb-3 mb-md-0">
           <div class="d-flex align-items-start">
-            <img src="MEDIA/LOGO SH.png" alt="Logo" style="height: 60px; margin-right: 10px;">
+            <img src="../media/LOGO_SH.png" alt="Logo" style="height: 60px; margin-right: 10px;">
               <div>
                 <p class="mb-0 fw-bold">Urb. Las Viñas de Surco - Mz F7 Lt 13</p>
                 <p class="mb-0">Callao - Callao - Perú</p>
@@ -208,7 +204,10 @@
         </div>
     </div>
   </pie>
-  <script src="scripts/script.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/5hb7x2j5f5e5f5e5f5e5f5e5f5e5f5e5f5e5" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js" integrity="sha384-3g6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script> 
+  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js" integrity="sha384-3g6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+  <script src="../js/scripts.js"></script>
 </body>
 </html>
