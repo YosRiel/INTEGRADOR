@@ -1,6 +1,8 @@
 package com.integrador.servimanef.controller;
 
+import com.integrador.servimanef.entity.pedido;
 import com.integrador.servimanef.entity.usuario;
+import com.integrador.servimanef.repository.pedidoRepository;
 import com.integrador.servimanef.repository.usuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,9 @@ public class PageController {
 
     @Autowired
     private usuarioRepository usuarioRepository;
+
+    @Autowired
+    private pedidoRepository pedidoRepository;
 
     @GetMapping("/")
     public String index() {
@@ -56,5 +61,11 @@ public class PageController {
     @GetMapping("/recepcion")
     public String recepcion() {
         return "recepcion";
+    }
+
+    @PostMapping("/pedido")
+    public String registrarPedido(@ModelAttribute pedido pedido) {
+        pedidoRepository.save(pedido);
+        return "redirect:/"; // Redirige a la página principal o donde prefieras
     }
 }

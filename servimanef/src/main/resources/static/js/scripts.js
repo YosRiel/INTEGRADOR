@@ -1,32 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Manejo del formulario de pedidos
-  const form = document.getElementById("pedidoForm");
-
-  if (form) {
-    form.addEventListener("submit", (event) => {
-      event.preventDefault(); // Evita que el formulario se envíe y recargue la página
-
-      // Crear el objeto con los datos del formulario
-      const pedido = {
-        cliente: form.cliente.value,
-        servicio: form.servicio.value,
-        telefono: form.telefono.value,
-        empresa: form.empresa.value,
-        ruc: form.ruc.value,
-        descripcion: form.descripcion ? form.descripcion.value : "Sin descripción",
-        direccion: form.direccion ? form.direccion.value : "---",
-      };
-
-      // Almacenar el objeto en localStorage
-      let pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
-      pedidos.push(pedido);
-      localStorage.setItem("pedidos", JSON.stringify(pedidos));
-
-      // Opcional: Mostrar un mensaje de éxito o limpiar el formulario
-      alert("Pedido registrado exitosamente.");
-      form.reset();
-    });
-  }
 
   // Manejo de la tabla en recepcion.html
   const recepcionTable = document.querySelector("#recepcionTable tbody");
