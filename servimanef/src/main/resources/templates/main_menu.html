@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Panel Principal - Servimanef</title>
-  <link rel="shortcut icon" href="../media/LOGO_SH.png" type="image/x-icon">
+  <link rel="shortcut icon" th:href="@{/media/LOGO_SH.png}" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand" href="main_menu.html">
-        <img src="../media/LOGO.png" alt="Logo Servimanef">
+      <a class="navbar-brand" th:href="@{/main_menu}">
+        <img th:src="@{/media/LOGO.png}" alt="Logo Servimanef">
       </a>
       <span class="navbar-text">
         INTRANET SERVIMANEF E.I.R.L.
@@ -28,21 +28,21 @@
     <div class="container-fluid">
       <div class="row g-4">
         <div class="col-md-4">
-          <button type="button" class="card-option" onclick="location.href='recepcion.html'">
+          <button type="button" class="card-option" th:onclick="'location.href=\'' + @{/recepcion} + '\'"'>
             <div class="option-text">
               RECEPCIÓN<br><span>DE</span><br>SERVICIOS
             </div>
           </button>
         </div>
         <div class="col-md-4">
-          <button type="button" class="card-option" onclick="location.href='informes.html'">
+          <button type="button" class="card-option" th:onclick="'location.href=\'' + @{/informes} + '\'"'>
             <div class="option-text">
               GENERACIÓN<br><span>DE</span><br>INFORME
             </div>
           </button>
         </div>
         <div class="col-md-4">
-          <button type="button" class="card-option" onclick="location.href='proforma.html'">
+          <button type="button" class="card-option" th:onclick="'location.href=\'' + @{/proforma} + '\'"'>
             <div class="option-text">
               GENERACIÓN<br><span>DE</span><br>PROFORMA
             </div>

@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Recepción de Servicios</title>
-  <link rel="shortcut icon" href="../media/LOGO_SH.png" type="image/x-icon">
+  <link rel="shortcut icon" th:href="@{/media/LOGO_SH.png}" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-  <link rel="stylesheet" href="../css/styles.css">  
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 
   <!-- Navbar -->
   <nav class="navbar navbar-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="main_menu.html">
-        <img src="../media/LOGO.png" alt="Logo Servimanef">
+      <a class="navbar-brand" th:href="@{/main_menu}">
+        <img th:src="@{/media/LOGO.png}" alt="Logo Servimanef">
       </a>
       <h5>Recepción de Servicios</h5>
     </div>
@@ -41,6 +41,18 @@
               </tr>
             </thead>
             <tbody>
+              <!-- Ejemplo de renderizado dinámico con Thymeleaf:
+              <tr th:each="recepcion : ${recepciones}">
+                <td th:text="${recepcion.cliente}"></td>
+                <td th:text="${recepcion.servicio}"></td>
+                <td th:text="${recepcion.fecha}"></td>
+                <td th:text="${recepcion.ejecutado}"></td>
+                <td th:text="${recepcion.telefono}"></td>
+                <td th:text="${recepcion.empresa}"></td>
+                <td th:text="${recepcion.ruc}"></td>
+                <td th:text="${recepcion.estado}"></td>
+              </tr>
+              -->
             </tbody>
           </table>
         </div>
@@ -60,6 +72,6 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-  <script src="../js/scripts.js"></script>
+  <script th:src="@{/js/scripts.js}"></script>
 </body>
 </html>
