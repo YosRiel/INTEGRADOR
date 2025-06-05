@@ -30,10 +30,9 @@
           <table id="recepcionTable" class="table table-hover table-bordered align-middle">
             <thead>
               <tr>
+                <th>ID SERVICIO</th>
                 <th>Cliente</th>
                 <th>Servicio</th>
-                <th>Fecha</th>
-                <th>Ejecutado</th>
                 <th>Teléfono</th>
                 <th>Empresa</th>
                 <th>RUC</th>
@@ -41,18 +40,15 @@
               </tr>
             </thead>
             <tbody>
-              <!-- Ejemplo de renderizado dinámico con Thymeleaf:
               <tr th:each="recepcion : ${recepciones}">
+                <td th:text="${recepcion.id}"></td>
                 <td th:text="${recepcion.cliente}"></td>
                 <td th:text="${recepcion.servicio}"></td>
-                <td th:text="${recepcion.fecha}"></td>
-                <td th:text="${recepcion.ejecutado}"></td>
                 <td th:text="${recepcion.telefono}"></td>
                 <td th:text="${recepcion.empresa}"></td>
                 <td th:text="${recepcion.ruc}"></td>
-                <td th:text="${recepcion.estado}"></td>
+                <td></td>
               </tr>
-              -->
             </tbody>
           </table>
         </div>

@@ -59,7 +59,8 @@ public class PageController {
     }
 
     @GetMapping("/recepcion")
-    public String recepcion() {
+    public String recepcion(Model model) {
+        model.addAttribute("recepciones", pedidoRepository.findAll());
         return "recepcion";
     }
 
