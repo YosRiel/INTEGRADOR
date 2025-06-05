@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="#{title}">SERVIMANEF E.I.R.L.</title>
+    <link rel="shortcut icon" th:href="@{/media/LOGO_SH.png}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/css/styleIndex.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand logo" th:href="@{/}">
+          <img th:src="@{/media/LOGO.png}" alt="Logo de SERVIMANEF E.I.R.L.">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ms-auto text-center text-lg-start w-100 justify-content-center justify-content-lg-end">
+            <a class="nav-link nav" href="#nosotros" th:text="#{navbar.nosotros}">Nosotros</a>
+            <a class="nav-link nav" href="#servicios" th:text="#{navbar.servicios}">Servicios</a>
+            <a class="nav-link nav" href="#clientes" th:text="#{navbar.clientes}">Clientes</a>
+            <a class="nav-link nav" href="#acreditaciones" th:text="#{navbar.acreditaciones}">Acreditaciones</a>
+            <a class="nav-link btn-intranet" th:href="@{/intranet}" th:text="#{navbar.intranet}">INTRANET</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="container mt-5">
+      <div id="carousel" class="carousel slide carousel-fade shadow rounded overflow-hidden" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="hover">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img th:src="@{/media/CARRUSEL1_HORIZONTAL.jpg}" class="d-block w-100 rounded" alt="">
+          </div>
+          <div class="carousel-item">
+            <img th:src="@{/media/CARRUSEL2_HORIZONTAL.jpeg}" class="d-block w-100 rounded" alt="">
+          </div>
+          <div class="carousel-item">
+            <img th:src="@{/media/CARRUSEL3_HORIZONTAL.jpeg}" class="d-block w-100 rounded" alt="">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden" th:text="#{carousel.prev}">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden" th:text="#{carousel.next}">Siguiente</span>
+        </button>
+      </div>
+    </div>
+    <div class="container mt-5 mb-5 text-center">
+      <!-- Sección Nosotros -->
+      <section id="nosotros">
+        <div class="card shadow-lg rounded-4 p-4 mb-5">
+          <h2 class="mb-3">
+            <span style="color:black;" th:text="#{main.sobre}">Sobre</span>
+            <span style="color:#E12428;" th:text="#{main.nosotros}">Nosotros</span>
+          </h2>
+          <p th:text="#{main.descripcion1}">Somos una empresa con 15 años de experiencia...</p>
+          <p th:text="#{main.descripcion2}">Nuestro propósito es brindar soluciones...</p>
+        </div>
+      </section>
+      <!-- Sección Servicios -->
+      <section id="servicios">
+        <div class="card shadow-lg rounded-4 p-4 mb-5">
+          <h2 class="mb-3">
+            <span style="color:black;" th:text="#{main.nuestros}">Nuestros</span>
+            <span style="color:#E12428;" th:text="#{main.servicios}">Servicios</span>
+          </h2>
+          <p th:text="#{servicios.descripcion}">Descripción de los servicios que ofrece la empresa.</p>
+          <ul class="text-start d-inline-block">
+            <li th:text="#{servicios.1}">Limpieza en planta industrial...</li>
+            <li th:text="#{servicios.2}">Limpieza en embarcación...</li>
+            <li th:text="#{servicios.3}">Lavado de Pangas</li>
+            <li th:text="#{servicios.4}">Pintado industrial</li>
+            <li th:text="#{servicios.5}">Pintado en Embarcaciones</li>
+            <li th:text="#{servicios.6}">Aislamiento térmico</li>
+            <li th:text="#{servicios.7}">Enfibrado</li>
+          </ul>
+        </div>
+      </section>
+      <!-- Sección Clientes -->
+      <section id="clientes">
+        <div class="card shadow-lg rounded-4 p-4 mb-5">
+          <h2 class="mb-3">
+            <span style="color:black;" th:text="#{main.nuestros}">Nuestros</span>
+            <span style="color:#E12428;" th:text="#{main.clientes}">Clientes</span>
+          </h2>
+          <div class="clientes-imagenes">
+            <img th:src="@{/media/LOGOS_EMPRESAS.png}" class="img-fluid" alt="Clientes de SERVIMANEF E.I.R.L.">
+          </div>
+        </div>
+      </section>
+      <!-- Sección Ubicación -->
+      <section id="ubicacion">
+        <div class="card shadow-lg rounded-4 p-4 mb-5">
+          <h2 class="mb-3">
+            <span style="color:black;" th:text="#{ubicacion.donde}">¿Dónde nos</span>
+            <span style="color:#E12428;" th:text="#{ubicacion.estamos}">Ubicamos</span>
+            <span style="color:black;" th:text="#{ubicacion.titulo}">?</span>
+          </h2>
+          <div class="ubicacion-container mb-3">
+            <div class="ubicacion-mapa">
+              <iframe class="w-100 rounded-3" height="400" title="" style="border:0;" loading="lazy" allowfullscreen 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3903.1902453060925!2d-77.12801703868024!3d-11.961326433565372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105cd08c33aea85%3A0x70e5fbdd60a55a01!2sSERVIMANEF%20EIRL!5e0!3m2!1ses!2sus!4v1729808983635!5m2!1ses!2sus">
+              </iframe>
+            </div>
+          </div>
+          <p th:text="#{ubicacion.descripcion1}">Nos encontramos en una ubicación estratégica...</p>
+          <p th:text="#{ubicacion.descripcion2}">Contamos con acceso a vías principales...</p>
+        </div>
+      </section>
+      <!-- Sección Acreditaciones -->
+      <section id="acreditaciones">
+        <div class="card shadow-lg rounded-4 p-4 mb-5">
+          <h2 class="mb-3">
+            <span style="color:black;" th:text="#{acreditaciones.titulo1}">Programas de</span>
+            <span style="color:#E12428;" th:text="#{acreditaciones.titulo2}">Mejora</span>
+          </h2>
+          <p th:text="#{acreditaciones.descripcion}">Optimización de servicios y programas de mejora continua.</p>
+          <div class="row mt-4">
+            <div class="col-md-4 mb-3">
+              <img src="https://earthcharter.org/wp-content/uploads/2020/01/GR-2I.png" class="img-fluid rounded" alt="Programa de Mejora 1">
+            </div>
+            <div class="col-md-4 mb-3">
+              <img src="https://www.silsa.com.pe/wp-content/uploads/2019/09/SGS-ISO-9001-COLOR-320x200.png" class="img-fluid rounded" alt="Programa de Mejora 2">
+            </div>
+            <div class="col-md-4 mb-3">
+              <img src="https://www.cooperacionsuiza.pe/wp-content/uploads/2019/03/logo-score.png" class="img-fluid rounded" alt="Programa de Mejora 3">
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Formulario de registro de pedido de servicio -->
+      <div class="row mt-5">
+        <div class="card shadow-lg rounded-4 p-4 mb-5">
+          <div class="row">
+            <div class="col-md-6 d-flex align-items-center justify-content-center">
+              <img th:src="@{/media/formulario_imagen.jpg}" class="img-fluid rounded" alt="">
+            </div>
+            <div class="col-md-6">
+              <h3 class="mb-3" th:text="#{formulario.titulo}">Formulario de Registro de Pedido de Servicio</h3>
+              <form id="pedidoForm" th:action="@{/pedido}" method="post">
+                <div class="mb-3">
+                  <label for="cliente" class="form-label" th:text="#{formulario.cliente}">Cliente</label>
+                  <input type="text" class="form-control" id="cliente" name="cliente" required>
+                </div>
+                <div class="mb-3">
+                  <label for="servicio" class="form-label" th:text="#{formulario.servicio}">Servicio</label>
+                  <input type="text" class="form-control" id="servicio" name="servicio" required>
+                </div>
+                <div class="mb-3">
+                  <label for="telefono" class="form-label" th:text="#{formulario.telefono}">Teléfono</label>
+                  <input type="text" class="form-control" id="telefono" name="telefono" required>
+                </div>
+                <div class="mb-3">
+                  <label for="empresa" class="form-label" th:text="#{formulario.empresa}">Empresa</label>
+                  <input type="text" class="form-control" id="empresa" name="empresa" required>
+                </div>
+                <div class="mb-3">
+                  <label for="ruc" class="form-label" th:text="#{formulario.ruc}">RUC</label>
+                  <input type="text" class="form-control" id="ruc" name="ruc" required>
+                </div>
+                <button type="submit" class="btn btn-primary" th:text="#{formulario.registrar}">Registrar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="bg-light border-top mt-5 py-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-8 mb-3 mb-md-0">
+          <div class="d-flex align-items-start">
+            <img th:src="@{/media/LOGO_SH.png}" alt="Logo" style="height: 60px; margin-right: 10px;">
+            <div>
+              <p class="mb-0 fw-bold" th:text="#{footer.direccion}">Urb. Las Viñas de Surco - Mz F7 Lt 13</p>
+              <p class="mb-0" th:text="#{footer.ciudad}">Callao - Callao - Perú</p>
+              <p class="mb-0" th:text="#{footer.telefono}">📞 (+51) 980 984 177</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-end align-items-center gap-3">
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-briefcase fs-3 text-success"></i>
+            <span class="fw-semibold" th:text="#{footer.trabaja}">Trabaja con Nosotros</span>
+          </div>
+          <div style="border-left: 1px solid #ccc; height: 40px;"></div>
+          <div class="d-flex align-items-center gap-2">
+            <a href="https://www.facebook.com/profile.php?id=100077413897312">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1024px-Facebook_Logo_%282019%29.png" alt="Facebook SERVIMANEF" style="height: 24px;">
+            </a>
+            <a href="https://www.linkedin.com/company/servimanef/">
+              <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/circle-linkedin-512.png" alt="LinkedIn SERVIMANEF" style="height: 24px;">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="text-center">
+          <small class="text-secondary d-block">
+            <span th:text="#{footer.derechos}">SERVIMANEF E.I.R.L. - TODOS LOS DERECHOS RESERVADOS 2025</span>
+          </small>
+          <div class="d-inline-flex gap-2 align-items-center">
+            <form method="get" th:action="@{/}">
+              <input type="hidden" name="lang" value="es"/>
+              <button type="submit" class="btn btn-primary btn-sm rounded-pill px-3" style="min-width: 45px;">ES</button>
+            </form>
+            <form method="get" th:action="@{/}">
+              <input type="hidden" name="lang" value="en"/>
+              <button type="submit" class="btn btn-danger btn-sm rounded-pill px-3" style="min-width: 45px;">EN</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js" crossorigin="anonymous"></script>
+  <script th:src="@{/js/scripts.js}"></script>
+</body>
+</html>
