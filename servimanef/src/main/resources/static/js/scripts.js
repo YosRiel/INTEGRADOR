@@ -28,60 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Manejo del formulario de login
-  const loginForm = document.querySelector("form");
-  const usernameInput = document.getElementById("user");
-  const passwordInput = document.getElementById("password");
-  const checkbox = document.getElementById("checkbox");
-
-  if (loginForm) {
-    loginForm.addEventListener("submit", (event) => {
-      event.preventDefault(); // Evita el envío del formulario
-
-      const username = usernameInput.value.trim();
-      const password = passwordInput.value.trim();
-
-      // Validar formato del correo y contraseña
-      const emailRegex = /^[a-zA-Z0-9._%+-]+@servimanef\.com$/;
-      const passwordRegex = /^[A-Za-z0-9]{8,}$/;
-
-      if (!emailRegex.test(username)) {
-        alert("El correo debe ser válido y terminar con @servimanef.com.");
-        return;
-      }
-
-      if (!passwordRegex.test(password)) {
-        alert("La contraseña debe tener al menos 8 caracteres y no contener caracteres especiales.");
-        return;
-      }
-
-      // Guardar credenciales en localStorage si el checkbox está marcado
-      if (checkbox.checked) {
-        localStorage.setItem("username", username);
-        localStorage.setItem("password", password);
-      }
-
-      // Verificar credenciales
-      if (username === "administrador@servimanef.com" && password === "diegofalla10") {
-        // Redirigir al menú principal
-        window.location.href = "main_menu.html";
-      } else {
-        alert("Credenciales incorrectas. Por favor, inténtelo de nuevo.");
-      }
-    });
-
-    // Cargar credenciales guardadas si existen
-    const savedUsername = localStorage.getItem("username");
-    const savedPassword = localStorage.getItem("password");
-
-    if (savedUsername && savedPassword) {
-      usernameInput.value = savedUsername;
-      passwordInput.value = savedPassword;
-      checkbox.checked = true;
-    }
-  }
-  
-
   // Manejo de la tabla en recepcion.html
   const recepcionTable = document.querySelector("#recepcionTable tbody");
 

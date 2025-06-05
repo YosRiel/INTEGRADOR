@@ -1,10 +1,17 @@
 package com.integrador.servimanef.controller;
 
+import com.integrador.servimanef.entity.usuario;
+import com.integrador.servimanef.repository.usuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PageController {
+
+    @Autowired
+    private usuarioRepository usuarioRepository;
 
     @GetMapping("/")
     public String index() {
@@ -13,7 +20,22 @@ public class PageController {
 
     @GetMapping("/intranet")
     public String intranet() {
-        return "/intranet";
+        return "intranet";
+    }
+
+    @PostMapping("/intranet/login")
+    public String login(@RequestParam String user,
+                        @RequestParam String password,
+                        Model model) {
+        usuario usuario = usuarioRepository.findByUsername(user);
+        if (usuario != null && usuario.getPassword().equals(password)) {
+            // Login exitoso
+            return "redirect:/main_menu";
+        } else {
+            // Login fallido
+            model.addAttribute("loginError", true);
+            return "intranet";
+        }
     }
 
     @GetMapping("/main_menu")
