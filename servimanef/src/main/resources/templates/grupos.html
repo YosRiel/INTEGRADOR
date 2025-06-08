@@ -43,7 +43,12 @@
             <br>
             <span th:text="${grupo.descripcion}">Descripción</span>
             <br>
-            <span th:text="'Imágenes: ' + ${grupo.cantidadImagenes}">Imágenes: 0</span>
+            <span>Imágenes:</span>
+            <div class="d-flex flex-wrap gap-2 mt-1">
+              <span th:each="img : ${grupo.imagenes}">
+                <img th:src="@{'/imagen/' + ${img.id}}" alt="Imagen" class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;">
+              </span>
+            </div>
           </li>
           <li class="list-group-item" th:if="${#lists.isEmpty(grupos)}">Aún no hay grupos agregados.</li>
         </ul>

@@ -7,6 +7,7 @@
   <link rel="shortcut icon" th:href="@{/media/LOGO_SH.png}" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
   <!-- Header -->
@@ -32,9 +33,14 @@
             Historial de Informes
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item" th:each="informe : ${informes}">
+            <li class="list-group-item d-flex justify-content-between align-items-center" th:each="informe : ${informes}">
               <span th:text="${informe.nombre}">Nombre del informe</span>
-              <!-- Puedes agregar más datos aquí si tu entidad lo permite -->
+              <div>
+                <a th:href="@{/informes/{id}/editar(id=${informe.id})}" class="btn btn-warning btn-sm me-2">Editar</a>
+                <form th:action="@{/informes/{id}/borrar(id=${informe.id})}" method="post" style="display:inline;">
+                  <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que desea borrar este informe?');">Borrar</button>
+                </form>
+              </div>
             </li>
             <li class="list-group-item" th:if="${#lists.isEmpty(informes)}">No hay informes registrados.</li>
           </ul>
@@ -64,7 +70,30 @@
             Editar Informe
           </div>
           <div class="card-body">
-            <p>Selecciona un informe del historial para editarlo (próximamente).</p>
+            <div th:if="${informeEditar != null}">
+              <h5 th:text="${informeEditar.nombre}">Nombre del informe</h5>
+              <ul class="list-group list-group-flush mb-3">
+                <li class="list-group-item" th:each="grupo : ${gruposEditar}">
+                  <strong th:text="${grupo.nombreGrupo}">Título</strong>
+                  <br>
+                  <span th:text="${grupo.descripcion}">Descripción</span>
+                  <br>
+                  <span>Imágenes:</span>
+                  <div class="d-flex flex-wrap gap-2 mt-1">
+                    <span th:each="img : ${grupo.imagenes}">
+                      <img th:src="@{'/imagen/' + ${img.id}}" alt="Imagen" class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;">
+                    </span>
+                  </div>
+                </li>
+                <li class="list-group-item" th:if="${#lists.isEmpty(gruposEditar)}">No hay grupos en este informe.</li>
+              </ul>
+              <form th:action="@{/informes/{id}/actualizar(id=${informeEditar.id})}" method="post" class="text-center">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+              </form>
+            </div>
+            <div th:if="${informeEditar == null}">
+              <p>Selecciona un informe del historial para editarlo.</p>
+            </div>
           </div>
         </div>
       </div>

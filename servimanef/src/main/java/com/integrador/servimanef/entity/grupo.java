@@ -27,4 +27,7 @@ public class grupo {
 
     @Column(columnDefinition = "TEXT")
     private String descripcion;
+
+    @OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private java.util.List<imagen> imagenes;
 }
