@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Agregar Grupos al Informe</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container my-5">
+  <h3>Agregar Grupo al Informe <span th:text="${informe.nombre}"></span></h3>
+  <div class="row">
+    <!-- Columna izquierda: Formulario -->
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-header bg-success text-white">Añadir Grupo</div>
+        <div class="card-body">
+          <form th:action="@{/informes/{id}/grupos/crear(id=${informe.id})}" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="titulo" class="form-label">Título del Grupo</label>
+              <input type="text" class="form-control" id="titulo" name="nombreGrupo" required>
+            </div>
+            <div class="mb-3">
+              <label for="descripcion" class="form-label">Descripción</label>
+              <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="imagenes" class="form-label">Imágenes (al menos una)</label>
+              <input type="file" class="form-control" id="imagenes" name="imagenes" accept="image/*" multiple required onchange="actualizarCantidadImagenes()">
+              <input type="hidden" id="cantidadImagenes" name="cantidadImagenes" value="1">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Agregar Grupo</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Columna derecha: Lista de grupos -->
+    <div class="col-md-6 mb-4">
+      <div class="card h-100">
+        <div class="card-header bg-primary text-white">Grupos Agregados</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" th:each="grupo : ${grupos}">
+            <strong th:text="${grupo.nombreGrupo}">Título</strong>
+            <br>
+            <span th:text="${grupo.descripcion}">Descripción</span>
+            <br>
+            <span th:text="'Imágenes: ' + ${grupo.cantidadImagenes}">Imágenes: 0</span>
+          </li>
+          <li class="list-group-item" th:if="${#lists.isEmpty(grupos)}">Aún no hay grupos agregados.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="mt-4">
+    <a th:href="@{/informes}" class="btn btn-secondary">Guardar</a>
+  </div>
+</div>
+<script>
+function actualizarCantidadImagenes() {
+  const input = document.getElementById('imagenes');
+  document.getElementById('cantidadImagenes').value = input.files.length || 1;
+}
+</script>
+</body>
+</html>

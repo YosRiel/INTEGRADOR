@@ -1,13 +1,22 @@
 package com.integrador.servimanef.controller;
 
+import com.integrador.servimanef.entity.informe;
+import com.integrador.servimanef.entity.grupo;
 import com.integrador.servimanef.entity.pedido;
 import com.integrador.servimanef.entity.usuario;
+import com.integrador.servimanef.repository.informeRepository;
+import com.integrador.servimanef.repository.grupoRepository;
 import com.integrador.servimanef.repository.pedidoRepository;
 import com.integrador.servimanef.repository.usuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class PageController {
@@ -17,6 +26,12 @@ public class PageController {
 
     @Autowired
     private pedidoRepository pedidoRepository;
+
+    @Autowired
+    private informeRepository informeRepository;
+
+    @Autowired
+    private grupoRepository grupoRepository;
 
     @GetMapping("/")
     public String index() {
@@ -49,8 +64,55 @@ public class PageController {
     }
 
     @GetMapping("/informes")
-    public String informes() {
+    public String informes(Model model) {
+        model.addAttribute("informes", informeRepository.findAll());
         return "informes";
+    }
+
+    @PostMapping("/informes/crear")
+    public String crearInforme(@RequestParam String nombre, RedirectAttributes redirectAttributes) {
+        // Obtener el último informe para calcular el siguiente número
+        Long count = informeRepository.count() + 1;
+        String membrete = String.format("SM-%04d", count);
+
+        informe informe = new informe();
+        informe.setNombre(membrete + " - " + nombre);
+        informeRepository.save(informe);
+
+        redirectAttributes.addFlashAttribute("mensaje", "Nuevo informe creado. Ingrese los grupos.");
+        redirectAttributes.addFlashAttribute("informeId", informe.getId());
+        return "redirect:/informes/" + informe.getId() + "/grupos";
+    }
+
+    // Ejemplo para mostrar grupos de un informe (opcional)
+    @GetMapping("/informes/{id}/grupos")
+    public String mostrarFormularioGrupo(@PathVariable Long id, Model model) {
+        informe informe = informeRepository.findById(id).orElseThrow();
+        List<grupo> grupos = grupoRepository.findByInformeId(id);
+        model.addAttribute("informe", informe);
+        model.addAttribute("grupos", grupos);
+        return "grupos";
+    }
+
+    @PostMapping("/informes/{id}/grupos/crear")
+    public String crearGrupo(@PathVariable Long id,
+                        @RequestParam String nombreGrupo,
+                        @RequestParam(required = false) String descripcion,
+                        @RequestParam("imagenes") MultipartFile[] imagenes,
+                        @RequestParam Integer cantidadImagenes,
+                        RedirectAttributes redirectAttributes) {
+        informe informe = informeRepository.findById(id).orElseThrow();
+
+        grupo grupo = new grupo();
+        grupo.setInforme(informe);
+        grupo.setNombreGrupo(nombreGrupo);
+        grupo.setDescripcion(descripcion);
+        grupo.setCantidadImagenes(cantidadImagenes);
+
+        grupoRepository.save(grupo);
+
+        redirectAttributes.addFlashAttribute("mensaje", "Grupo agregado correctamente.");
+        return "redirect:/informes/" + id + "/grupos";
     }
 
     @GetMapping("/proforma")
