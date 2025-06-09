@@ -85,7 +85,7 @@ public class PageController {
     @PostMapping("/informes/crear")
     public String crearInforme(@RequestParam String nombre, RedirectAttributes redirectAttributes) {
         // Transformar el nombre: mayúsculas y reemplazar espacios por "_"
-        String nombreTransformado = nombre.toUpperCase().replace(" ", "_");
+        String nombreTransformado = nombre.toUpperCase().replace(" ", "-");
 
         // Obtener el último informe para calcular el siguiente número
         Long count = informeRepository.count() + 1;
@@ -140,18 +140,6 @@ public class PageController {
 
         redirectAttributes.addFlashAttribute("mensaje", "Grupo agregado correctamente.");
         return "redirect:/informes/" + id + "/grupos";
-    }
-
-    @RestController
-    @RequestMapping("/api")
-    public class ApiController {
-        @Autowired
-        private pedidoRepository pedidoRepository;
-
-        @GetMapping("/recepcion")
-        public List<pedido> listarRecepciones() {
-            return pedidoRepository.findAll();
-        }
     }
 
       @GetMapping("/recepcion")
