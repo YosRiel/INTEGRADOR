@@ -1,11 +1,14 @@
 CREATE DATABASE integrador;
+
 USE integrador;
+
 CREATE TABLE `informe` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `grupo` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `cantidad_imagenes` int NOT NULL,
@@ -16,6 +19,7 @@ CREATE TABLE `grupo` (
   KEY `FK9one2kb0tlbn45t0vbnsee7n` (`informe_id`),
   CONSTRAINT `FK9one2kb0tlbn45t0vbnsee7n` FOREIGN KEY (`informe_id`) REFERENCES `informe` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `imagen` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `grupo_id` bigint NOT NULL,
@@ -25,6 +29,7 @@ CREATE TABLE `imagen` (
   KEY `FK4epolic1t2oupw5pb4us3534o` (`grupo_id`),
   CONSTRAINT `FK4epolic1t2oupw5pb4us3534o` FOREIGN KEY (`grupo_id`) REFERENCES `grupo` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `pedido` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `cliente` varchar(255) DEFAULT NULL,
@@ -35,6 +40,7 @@ CREATE TABLE `pedido` (
   `estado` varchar(255) NOT NULL DEFAULT 'Pendiente',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `proforma` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
@@ -46,6 +52,7 @@ CREATE TABLE `proforma` (
   `valor_servicio` double DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `usuario` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
