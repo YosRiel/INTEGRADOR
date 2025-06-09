@@ -264,13 +264,15 @@ public class PageController {
                 PdfWriter.getInstance(document, response.getOutputStream());
                 document.open();
 
+                // Encabezado
                 Paragraph encabezado = new Paragraph("SERVIMANEF E.I.R.L.", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18));
                 encabezado.setAlignment(Paragraph.ALIGN_CENTER);
                 document.add(encabezado);
 
                 document.add(new Paragraph(" "));
-                document.add(new Paragraph("PROFORMA", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16)));
-                document.add(new Paragraph("N°: " + proforma.getNombre()));
+
+                // Servicio y fecha
+                document.add(new Paragraph("Servicio: " + proforma.getNombre(), FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
                 document.add(new Paragraph("Fecha: " + java.time.LocalDate.now()));
                 document.add(new Paragraph(" "));
 
@@ -295,8 +297,15 @@ public class PageController {
                     document.add(new Paragraph(" "));
                 }
 
+                // Cálculo IGV e Importe Total
                 if (proforma.getValorServicio() != null) {
-                    document.add(new Paragraph("Valor del Servicio: S/ " + proforma.getValorServicio(), FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
+                    double valor = proforma.getValorServicio();
+                    double igv = Math.round(valor * 0.18 * 100.0) / 100.0;
+                    double total = Math.round((valor + igv) * 100.0) / 100.0;
+
+                    document.add(new Paragraph("Valor del Servicio: S/ " + valor, FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
+                    document.add(new Paragraph("IGV (18%): S/ " + igv, FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
+                    document.add(new Paragraph("Importe Total: S/ " + total, FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
                     document.add(new Paragraph(" "));
                 }
 

@@ -36,12 +36,19 @@
             <li class="list-group-item d-flex justify-content-between align-items-center" th:each="informe : ${informes}">
               <span th:text="${informe.nombre}">Nombre del informe</span>
               <div>
-                <a th:href="@{/informes/{id}/editar(id=${informe.id})}" class="btn btn-warning btn-sm me-2">Editar</a>
+                <!-- Botón Editar -->
+                <a th:href="@{/informes/{id}/editar(id=${informe.id})}" class="btn btn-warning btn-sm me-2" title="Editar">
+                  <i class="bi bi-pencil"></i>
+                </a>
+                <!-- Botón Borrar -->
                 <form th:action="@{/informes/{id}/borrar(id=${informe.id})}" method="post" style="display:inline;">
-                  <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que desea borrar este informe?');">Borrar</button>
+                  <button type="submit" class="btn btn-danger btn-sm" title="Borrar" onclick="return confirm('¿Seguro que desea borrar este informe?');">
+                    <i class="bi bi-trash"></i>
+                  </button>
                 </form>
-                <a th:href="@{/informes/{id}/pdf(id=${informe.id})}" class="btn btn-primary btn-sm">
-                  Descargar PDF
+                <!-- Botón Descargar PDF -->
+                <a th:href="@{/informes/{id}/pdf(id=${informe.id})}" class="btn btn-primary btn-sm" title="Descargar PDF">
+                  <i class="bi bi-download"></i>
                 </a>
               </div>
             </li>

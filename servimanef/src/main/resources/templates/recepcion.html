@@ -52,10 +52,11 @@
                 <td th:text="${recepcion.ruc}"></td>
                 <td th:text="${recepcion.estado}"></td>
                 <td>
+                  <!-- Botón Borrar Recepción -->
                   <form th:action="@{/recepcion/{id}/borrar(id=${recepcion.id})}" method="post" style="display:inline;">
-                    <button type="submit" class="btn btn-danger btn-sm"
+                    <button type="submit" class="btn btn-danger btn-sm" title="Borrar"
                       onclick="return confirm('¿Seguro que deseas borrar esta recepción?');">
-                      <i class="bi bi-trash"></i> Borrar
+                      <i class="bi bi-trash"></i>
                     </button>
                   </form>
                 </td>
