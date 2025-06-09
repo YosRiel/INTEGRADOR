@@ -39,6 +39,7 @@
                 <th>Empresa</th>
                 <th>RUC</th>
                 <th>Estado</th>
+                <th>Acciones</th> <!-- Nueva columna -->
               </tr>
             </thead>
             <tbody>
@@ -50,6 +51,14 @@
                 <td th:text="${recepcion.empresa}"></td>
                 <td th:text="${recepcion.ruc}"></td>
                 <td th:text="${recepcion.estado}"></td>
+                <td>
+                  <form th:action="@{/recepcion/{id}/borrar(id=${recepcion.id})}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm"
+                      onclick="return confirm('¿Seguro que deseas borrar esta recepción?');">
+                      <i class="bi bi-trash"></i> Borrar
+                    </button>
+                  </form>
+                </td>
               </tr>
             </tbody>
           </table>

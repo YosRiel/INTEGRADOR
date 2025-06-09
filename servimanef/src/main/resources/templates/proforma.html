@@ -31,6 +31,29 @@
             Historial de Proformas
           </div>
           <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center"
+                th:each="proforma : ${proformas}">
+              <span th:text="${proforma.nombre}"></span>
+              <div class="btn-group btn-group-sm" role="group">
+                <!-- Botón Descargar PDF -->
+                <form th:action="@{/proforma/{id}/pdf(id=${proforma.id})}" method="get" style="display:inline;">
+                  <button type="submit" class="btn btn-outline-primary" title="Descargar PDF">
+                    <i class="bi bi-download"></i>
+                  </button>
+                </form>
+                <!-- Botón Editar -->
+                <a th:href="@{/proforma(editar=${proforma.id})}" class="btn btn-outline-warning" title="Editar">
+                  <i class="bi bi-pencil"></i>
+                </a>
+                <!-- Botón Borrar -->
+                <form th:action="@{/proforma/{id}/borrar(id=${proforma.id})}" method="post" style="display:inline;">
+                  <button type="submit" class="btn btn-outline-danger" title="Borrar"
+                          onclick="return confirm('¿Seguro que deseas borrar esta proforma?');">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </form>
+              </div>
+            </li>
             <li class="list-group-item" th:if="${#lists.isEmpty(proformas)}">No hay proformas registradas.</li>
           </ul>
         </div>
@@ -39,78 +62,71 @@
       <div class="col-md-9">
         <div class="proforma-container">
 
-          <!-- Nombre de la Proforma -->
-          <div class="mb-4">
-            <h4 class="section-title">Datos de la Proforma</h4>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="nombreProforma" class="form-label">Nombre de la Proforma</label>
-                <input type="text" class="form-control" id="nombreProforma" placeholder="Ej: PROFORMA-001-LAVADO">
-              </div>
-
-              <div class="col-md-6 mb-3">
-                <label for="seleccionRecepcion" class="form-label">Seleccionar Recepción</label>
-                <select class="form-select" id="seleccionRecepcion" name="recepcionId" required>
-                  <option selected disabled>Selecciona un servicio</option>
-                  <option th:each="pedido : ${pedidos}"
-                          th:value="${pedido.id}"
-                          th:text="${pedido.servicio} + ' - ' + ${pedido.estado} + ' - ' + ${pedido.cliente}">Servicio - Estado - Cliente</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <!-- Informe -->
-          <div class="mb-4">
-            <h4 class="section-title">Contenido del Informe</h4>
-            <textarea class="form-control" rows="5" id="contenidoInforme" placeholder="Ingresa el contenido del informe..."></textarea>
-          </div>
-
-          <!-- Selección de Informes -->
-          <div class="mb-4">
-            <h4 class="section-title">Seleccionar Informe Guardado</h4>
-            <select class="form-select" id="seleccionInforme">
-              <option selected disabled>Selecciona un informe</option>
-            </select>
-          </div>
-
-          <!-- Descripción del Servicio + Valor -->
-          <div class="mb-4">
-            <h4 class="section-title">Detalle del Servicio</h4>
-            <div class="row">
-              <div class="col-md-8 mb-3">
-                <label for="descripcionServicio" class="form-label">Descripción del Servicio</label>
-                <input type="text" class="form-control" id="descripcionServicio" placeholder="Ej: Lavado profundo de 500 m2 de bodega">
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="valorServicio" class="form-label">Valor Agregado (S/.)</label>
-                <input type="number" class="form-control" id="valorServicio" placeholder="Ej: 1000">
-              </div>
-            </div>
-          </div>
-
-          <!-- Cálculo de Valores -->
-          <div class="mb-4">
-            <h4 class="section-title">Cálculo Final</h4>
-            <div class="total-box">
+          <form th:action="@{${proformaEditar != null} ? '/proforma/actualizar' : '/proforma/crear'}" method="post">
+            <!-- Solo incluir el campo id si estás editando -->
+            <input type="hidden" name="id" th:if="${proformaEditar != null}" th:value="${proformaEditar.id}" />
+            <div class="mb-4">
+              <h4 class="section-title">Datos de la Proforma</h4>
               <div class="row">
-                <div class="col-md-4">
-                  <p>Valor Agregado: <span id="valorAgregado">S/ 0.00</span></p>
+                <div class="col-md-6 mb-3">
+                  <label for="nombreProforma" class="form-label">Nombre de la Proforma</label>
+                  <input type="text" class="form-control" id="nombreProforma" name="nombre"
+                         th:value="${proformaEditar != null} ? ${proformaEditar.nombre} : ''" required>
                 </div>
-                <div class="col-md-4">
-                  <p>IGV (18%): <span id="igv">S/ 0.00</span></p>
-                </div>
-                <div class="col-md-4">
-                  <p><strong>Valor Total: <span id="valorTotal">S/ 0.00</span></strong></p>
+
+                <div class="col-md-6 mb-3">
+                  <label for="seleccionRecepcion" class="form-label">Seleccionar Recepción</label>
+                  <select class="form-select" id="seleccionRecepcion" name="recepcionId" required>
+                    <option selected disabled>Selecciona un servicio</option>
+                    <option th:each="pedido : ${pedidos}"
+                            th:value="${pedido.id}"
+                            th:text="${pedido.servicio} + ' - ' + ${pedido.estado} + ' - ' + ${pedido.cliente}">
+                    </option>
+                  </select>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Botón Guardar -->
-          <div class="text-center">
-            <button class="btn btn-success" id="guardarProforma">Guardar Proforma</button>
-          </div>
+            <!-- Informe -->
+            <div class="mb-4">
+              <h4 class="section-title">Contenido del Informe</h4>
+              <textarea class="form-control" rows="5" id="contenidoInforme" name="contenidoInforme" placeholder="Ingresa el contenido del informe..."></textarea>
+            </div>
+
+            <!-- Selección de Informes -->
+            <div class="mb-4">
+              <h4 class="section-title">Seleccionar Informe Guardado</h4>
+              <select class="form-select" id="seleccionInforme" name="informeId">
+                <option selected disabled>Selecciona un informe</option>
+                <option th:each="informe : ${informes}"
+                        th:value="${informe.id}"
+                        th:text="${informe.nombre}">
+                </option>
+              </select>
+            </div>
+
+            <!-- Detalle del Servicio y Valor -->
+            <div class="mb-4">
+              <h4 class="section-title">Detalle del Servicio</h4>
+              <div class="row">
+                <div class="col-md-8 mb-3">
+                  <label for="descripcionServicio" class="form-label">Descripción del Servicio</label>
+                  <input type="text" class="form-control" id="descripcionServicio" name="descripcionServicio" placeholder="Ej: Lavado profundo de 500 m2 de bodega">
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="valorServicio" class="form-label">Valor Agregado (S/.)</label>
+                  <input type="number" class="form-control" id="valorServicio" name="valorServicio" placeholder="Ej: 1000">
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón Guardar -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-success">
+                <span th:text="${proformaEditar != null} ? 'Actualizar Proforma' : 'Guardar Proforma'"></span>
+              </button>
+            </div>
+          </form>
 
         </div>
       </div>
