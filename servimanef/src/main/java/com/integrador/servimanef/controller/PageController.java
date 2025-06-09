@@ -142,12 +142,24 @@ public class PageController {
         return "redirect:/informes/" + id + "/grupos";
     }
 
-    @GetMapping("/recepcion")
+    @RestController
+    @RequestMapping("/api")
+    public class ApiController {
+        @Autowired
+        private pedidoRepository pedidoRepository;
+
+        @GetMapping("/recepcion")
+        public List<pedido> listarRecepciones() {
+            return pedidoRepository.findAll();
+        }
+    }
+
+      @GetMapping("/recepcion")
     public String recepcion(Model model) {
         model.addAttribute("recepciones", pedidoRepository.findAll());
         return "recepcion";
     }
-
+  
     @PostMapping("/pedido")
     public String registrarPedido(@ModelAttribute pedido pedido) {
         pedidoRepository.save(pedido);
