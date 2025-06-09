@@ -40,6 +40,9 @@
                 <form th:action="@{/informes/{id}/borrar(id=${informe.id})}" method="post" style="display:inline;">
                   <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que desea borrar este informe?');">Borrar</button>
                 </form>
+                <a th:href="@{/informes/{id}/pdf(id=${informe.id})}" class="btn btn-primary btn-sm">
+                  Descargar PDF
+                </a>
               </div>
             </li>
             <li class="list-group-item" th:if="${#lists.isEmpty(informes)}">No hay informes registrados.</li>
@@ -107,10 +110,11 @@
       <small>SERVIMANEF E.I.R.L. - Todos los derechos reservados © 2025</small>
     </div>
   </footer>
-
   <script>
     function logout() {
-      window.location.href = '/intranet';
+      if (confirm("¿Seguro que desea cerrar sesión?")) {
+        window.location.href = '/logout';
+      }
     }
   </script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

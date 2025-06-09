@@ -1,5 +1,6 @@
 package com.integrador.servimanef.entity;
 
+import java.util.List;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,14 @@ public class grupo {
     @Column(columnDefinition = "TEXT")
     private String descripcion;
 
-    @OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private java.util.List<imagen> imagenes;
+    @OneToMany(mappedBy = "grupo")
+    private List<imagen> imagenes;
+
+    public List<imagen> getImagenes() {
+        return imagenes;
+    }
+
+    public void setImagenes(List<imagen> imagenes) {
+        this.imagenes = imagenes;
+    }
 }

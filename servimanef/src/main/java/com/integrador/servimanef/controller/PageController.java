@@ -142,6 +142,9 @@ public class PageController {
 
     @PostMapping("/pedido")
     public String registrarPedido(@ModelAttribute pedido pedido) {
+        if (pedido.getEstado() == null || pedido.getEstado().isEmpty()) {
+            pedido.setEstado("Pendiente"); // O el estado inicial que prefieras
+        }
         pedidoService.guardar(pedido);
         return "redirect:/";
     }
@@ -365,5 +368,67 @@ public class PageController {
             redirectAttributes.addFlashAttribute("mensaje", "Error al borrar la recepción: " + e.getMessage());
         }
         return "redirect:/recepcion";
+    }
+
+    @GetMapping("/informes/{id}/pdf")
+    public void descargarInformePdf(@PathVariable Long id, jakarta.servlet.http.HttpServletResponse response) {
+        try {
+            informe informe = informeService.buscarPorId(id).orElseThrow();
+            List<grupo> grupos = grupoService.listarPorInformeId(id);
+
+            response.setContentType("application/pdf");
+            response.setHeader("Content-Disposition", "attachment; filename=informe_" + id + ".pdf");
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            response.setHeader("Pragma", "no-cache");
+            response.setDateHeader("Expires", 0);
+
+            Document document = new Document();
+            PdfWriter.getInstance(document, response.getOutputStream());
+            document.open();
+
+            // Encabezado
+            Paragraph encabezado = new Paragraph("SERVIMANEF E.I.R.L.", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18));
+            encabezado.setAlignment(Paragraph.ALIGN_CENTER);
+            document.add(encabezado);
+
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("INFORME FOTOGRÁFICO CALADO EN BODEGAS", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14)));
+            document.add(new Paragraph("EVIDENCIA DE CULMINACION DE SERVICIO", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12, com.lowagie.text.Font.BOLDITALIC)));
+            document.add(new Paragraph(" "));
+
+            // Datos generales
+            document.add(new Paragraph("Contrato: SERVIMANEF"));
+            document.add(new Paragraph("Puerto: CALLAO"));
+            document.add(new Paragraph(" "));
+
+            // Imágenes agrupadas
+            for (grupo grupo : grupos) {
+                document.add(new Paragraph("Grupo: " + grupo.getNombreGrupo(), FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
+                document.add(new Paragraph(grupo.getDescripcion() != null ? grupo.getDescripcion() : ""));
+                document.add(new Paragraph(" "));
+
+                List<imagen> imagenes = grupo.getImagenes(); // Asegúrate de tener el método getImagenes() en tu entidad grupo
+                for (imagen img : imagenes) {
+                    if (img.getDatos() != null) {
+                        com.lowagie.text.Image image = com.lowagie.text.Image.getInstance(img.getDatos());
+                        image.scaleToFit(250, 250);
+                        image.setAlignment(com.lowagie.text.Image.ALIGN_CENTER);
+                        document.add(image);
+                        document.add(new Paragraph(" "));
+                    }
+                }
+                document.add(new Paragraph(" "));
+            }
+
+            document.close();
+        } catch (Exception e) {
+            try {
+                response.reset();
+                response.setContentType("text/plain");
+                response.getWriter().write("Error al generar el PDF: " + e.getMessage());
+            } catch (IOException ioException) {
+                // No se pudo escribir el error en la respuesta
+            }
+        }
     }
 }
