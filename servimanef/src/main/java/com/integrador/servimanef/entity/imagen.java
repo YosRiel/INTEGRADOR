@@ -18,7 +18,7 @@ public class imagen {
     @Column(nullable = false, columnDefinition = "LONGBLOB")
     private byte[] datos;
 
-    private String tipo; // MIME type, ej: "image/png"
+    private String tipo;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "grupo_id", nullable = false)

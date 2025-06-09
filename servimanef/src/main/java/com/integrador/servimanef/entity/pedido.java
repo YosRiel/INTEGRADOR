@@ -19,4 +19,5 @@ public class pedido {
     private String telefono;
     private String empresa;
     private String ruc;
+    private String estado;
 }

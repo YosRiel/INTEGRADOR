@@ -22,84 +22,98 @@
     </div>
   </nav>
 
-  <!-- Contenedor principal -->
   <div class="container">
-    <div class="proforma-container">
+    <div class="row">
+      <!-- Columna izquierda: Historial -->
+      <div class="col-md-3 mb-4">
+        <div class="card h-100">
+          <div class="card-header bg-primary text-white">
+            Historial de Proformas
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" th:if="${#lists.isEmpty(proformas)}">No hay proformas registradas.</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Columna central: Contenido principal -->
+      <div class="col-md-9">
+        <div class="proforma-container">
 
-      <!-- Nombre de la Proforma -->
-      <div class="mb-4">
-        <h4 class="section-title">Datos de la Proforma</h4>
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="nombreProforma" class="form-label">Nombre de la Proforma</label>
-            <input type="text" class="form-control" id="nombreProforma" placeholder="Ej: PROFORMA-001-LAVADO">
+          <!-- Nombre de la Proforma -->
+          <div class="mb-4">
+            <h4 class="section-title">Datos de la Proforma</h4>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="nombreProforma" class="form-label">Nombre de la Proforma</label>
+                <input type="text" class="form-control" id="nombreProforma" placeholder="Ej: PROFORMA-001-LAVADO">
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="seleccionRecepcion" class="form-label">Seleccionar Recepción</label>
+                <select class="form-select" id="seleccionRecepcion" name="recepcionId" required>
+                  <option selected disabled>Selecciona un servicio</option>
+                  <option th:each="pedido : ${pedidos}"
+                          th:value="${pedido.id}"
+                          th:text="${pedido.servicio} + ' - ' + ${pedido.estado} + ' - ' + ${pedido.cliente}">Servicio - Estado - Cliente</option>
+                </select>
+              </div>
+            </div>
           </div>
 
-          <div class="col-md-6 mb-3">
-            <label for="seleccionRecepcion" class="form-label">Seleccionar Recepción</label>
-            <select class="form-select" id="seleccionRecepcion">
-              <option selected disabled>Selecciona un servicio</option>
-              <option value="Servicio 1">Lavado de Bodegas (En Proceso)</option>
-              <option value="Servicio 2">Mantenimiento de techos (Finalizado)</option>
-              <!-- Estos valores se cargarían dinámicamente -->
+          <!-- Informe -->
+          <div class="mb-4">
+            <h4 class="section-title">Contenido del Informe</h4>
+            <textarea class="form-control" rows="5" id="contenidoInforme" placeholder="Ingresa el contenido del informe..."></textarea>
+          </div>
+
+          <!-- Selección de Informes -->
+          <div class="mb-4">
+            <h4 class="section-title">Seleccionar Informe Guardado</h4>
+            <select class="form-select" id="seleccionInforme">
+              <option selected disabled>Selecciona un informe</option>
             </select>
           </div>
-        </div>
-      </div>
 
-      <!-- Informe -->
-      <div class="mb-4">
-        <h4 class="section-title">Contenido del Informe</h4>
-        <textarea class="form-control" rows="5" id="contenidoInforme" placeholder="Ingresa el contenido del informe..."></textarea>
-      </div>
-
-      <!-- Selección de Informes -->
-      <div class="mb-4">
-        <h4 class="section-title">Seleccionar Informe Guardado</h4>
-        <select class="form-select" id="seleccionInforme">
-          <option selected disabled>Selecciona un informe</option>
-          <!-- Los informes se cargarán dinámicamente desde localStorage -->
-        </select>
-      </div>
-
-      <!-- Descripción del Servicio + Valor -->
-      <div class="mb-4">
-        <h4 class="section-title">Detalle del Servicio</h4>
-        <div class="row">
-          <div class="col-md-8 mb-3">
-            <label for="descripcionServicio" class="form-label">Descripción del Servicio</label>
-            <input type="text" class="form-control" id="descripcionServicio" placeholder="Ej: Lavado profundo de 500 m2 de bodega">
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="valorServicio" class="form-label">Valor Agregado (S/.)</label>
-            <input type="number" class="form-control" id="valorServicio" placeholder="Ej: 1000">
-          </div>
-        </div>
-      </div>
-
-      <!-- Cálculo de Valores -->
-      <div class="mb-4">
-        <h4 class="section-title">Cálculo Final</h4>
-        <div class="total-box">
-          <div class="row">
-            <div class="col-md-4">
-              <p>Valor Agregado: <span id="valorAgregado">S/ 0.00</span></p>
-            </div>
-            <div class="col-md-4">
-              <p>IGV (18%): <span id="igv">S/ 0.00</span></p>
-            </div>
-            <div class="col-md-4">
-              <p><strong>Valor Total: <span id="valorTotal">S/ 0.00</span></strong></p>
+          <!-- Descripción del Servicio + Valor -->
+          <div class="mb-4">
+            <h4 class="section-title">Detalle del Servicio</h4>
+            <div class="row">
+              <div class="col-md-8 mb-3">
+                <label for="descripcionServicio" class="form-label">Descripción del Servicio</label>
+                <input type="text" class="form-control" id="descripcionServicio" placeholder="Ej: Lavado profundo de 500 m2 de bodega">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="valorServicio" class="form-label">Valor Agregado (S/.)</label>
+                <input type="number" class="form-control" id="valorServicio" placeholder="Ej: 1000">
+              </div>
             </div>
           </div>
+
+          <!-- Cálculo de Valores -->
+          <div class="mb-4">
+            <h4 class="section-title">Cálculo Final</h4>
+            <div class="total-box">
+              <div class="row">
+                <div class="col-md-4">
+                  <p>Valor Agregado: <span id="valorAgregado">S/ 0.00</span></p>
+                </div>
+                <div class="col-md-4">
+                  <p>IGV (18%): <span id="igv">S/ 0.00</span></p>
+                </div>
+                <div class="col-md-4">
+                  <p><strong>Valor Total: <span id="valorTotal">S/ 0.00</span></strong></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botón Guardar -->
+          <div class="text-center">
+            <button class="btn btn-success" id="guardarProforma">Guardar Proforma</button>
+          </div>
+
         </div>
       </div>
-
-      <!-- Botón Guardar -->
-      <div class="text-center">
-        <button class="btn btn-success" id="guardarProforma">Guardar Proforma</button>
-      </div>
-
     </div>
   </div>
 

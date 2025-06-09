@@ -9,6 +9,7 @@ import com.integrador.servimanef.repository.imagenRepository;
 import com.integrador.servimanef.repository.informeRepository;
 import com.integrador.servimanef.repository.grupoRepository;
 import com.integrador.servimanef.repository.pedidoRepository;
+import com.integrador.servimanef.repository.proformaRepository;
 import com.integrador.servimanef.repository.usuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -136,7 +137,9 @@ public class PageController {
     }
 
     @GetMapping("/proforma")
-    public String proforma() {
+    public String proforma(Model model) {
+        List<pedido> pedidos = pedidoRepository.findAll();
+        model.addAttribute("pedidos", pedidos);
         return "proforma";
     }
 
@@ -192,5 +195,28 @@ public class PageController {
             headers.setContentType(MediaType.parseMediaType(imagen.getTipo()));
             return new ResponseEntity<>(imagen.getDatos(), headers, HttpStatus.OK);
         }
+    }
+
+    @PostMapping("/proforma/crear")
+    public String crearProforma(@RequestParam String nombre, RedirectAttributes redirectAttributes) {
+        // Obtener el siguiente número correlativo
+        Long count = proformaRepository.count() + 1;
+        String numero = String.format("%03d", count);
+
+        // Obtener el año actual
+        String anio = String.valueOf(java.time.Year.now().getValue());
+
+        // Formatear el nombre
+        String nombreFormateado = nombre.toUpperCase().replace(" ", "-");
+
+        // Armar el membrete
+        String membrete = numero + "-" + anio + "-" + nombreFormateado;
+
+        proforma proforma = new proforma();
+        proforma.setNombre(membrete); // O usa setMembrete si tu campo se llama así
+        proformaRepository.save(proforma);
+
+        redirectAttributes.addFlashAttribute("mensaje", "Proforma creada correctamente.");
+        return "redirect:/proforma";
     }
 }
