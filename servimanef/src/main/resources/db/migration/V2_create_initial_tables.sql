@@ -61,3 +61,8 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO usuario (username, password, role) VALUES
+('admin@servimanef.com', 'admin123', 'ADMIN'),
+('trabajador1@servimanef.com', 'trabajador123', 'TRABAJADOR'),
+('contador1@servimanef.com', 'contador123', 'CONTADOR');
