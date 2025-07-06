@@ -10,21 +10,25 @@
 </head>
 <body>
   <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm rounded-bottom-4 py-2 px-3" style="border-bottom: 2px solid #eaeaea;">
       <div class="container-fluid">
-        <a class="navbar-brand logo" th:href="@{/}">
-          <img th:src="@{/media/LOGO.png}" alt="Logo de SERVIMANEF E.I.R.L.">
+        <a class="navbar-brand d-flex align-items-center gap-2" th:href="@{/}">
+          <img th:src="@{/media/LOGO.png}" alt="Logo de SERVIMANEF E.I.R.L." style="height: 48px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07);">
+          <span class="fw-bold fs-5 text-primary d-none d-md-inline" style="letter-spacing: 1px;"></span>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav ms-auto text-center text-lg-start w-100 justify-content-center justify-content-lg-end">
-            <a class="nav-link nav" href="#nosotros" th:text="#{navbar.nosotros}">Nosotros</a>
-            <a class="nav-link nav" href="#servicios" th:text="#{navbar.servicios}">Servicios</a>
-            <a class="nav-link nav" href="#clientes" th:text="#{navbar.clientes}">Clientes</a>
-            <a class="nav-link nav" href="#acreditaciones" th:text="#{navbar.acreditaciones}">Acreditaciones</a>
-            <a class="nav-link btn-intranet" th:href="@{/intranet}" th:text="#{navbar.intranet}">INTRANET</a>
+          <div class="navbar-nav ms-auto gap-2 align-items-center">
+            <a class="nav-link px-3 rounded-3 fw-semibold text-dark nav-modern" href="#nosotros" th:text="#{navbar.nosotros}">Nosotros</a>
+            <a class="nav-link px-3 rounded-3 fw-semibold text-dark nav-modern" href="#servicios" th:text="#{navbar.servicios}">Servicios</a>
+            <a class="nav-link px-3 rounded-3 fw-semibold text-dark nav-modern" href="#clientes" th:text="#{navbar.clientes}">Clientes</a>
+            <a class="nav-link px-3 rounded-3 fw-semibold text-dark nav-modern" href="#acreditaciones" th:text="#{navbar.acreditaciones}">Acreditaciones</a>
+            <a class="btn btn-intranet d-flex align-items-center gap-2 px-4 py-2 ms-2 fw-bold shadow-sm" th:href="@{/intranet}" style="background: linear-gradient(90deg, #e12428 0%, #0568a6 100%); color: #fff; border-radius: 20px;">
+              <i class="bi bi-shield-lock-fill"></i>
+              <span th:text="#{navbar.intranet}">INTRANET</span>
+            </a>
           </div>
         </div>
       </div>
@@ -79,15 +83,55 @@
             <span style="color:#E12428;" th:text="#{main.servicios}">Servicios</span>
           </h2>
           <p th:text="#{servicios.descripcion}">Descripción de los servicios que ofrece la empresa.</p>
-          <ul class="text-start d-inline-block">
-            <li th:text="#{servicios.1}">Limpieza en planta industrial...</li>
-            <li th:text="#{servicios.2}">Limpieza en embarcación...</li>
-            <li th:text="#{servicios.3}">Lavado de Pangas</li>
-            <li th:text="#{servicios.4}">Pintado industrial</li>
-            <li th:text="#{servicios.5}">Pintado en Embarcaciones</li>
-            <li th:text="#{servicios.6}">Aislamiento térmico</li>
-            <li th:text="#{servicios.7}">Enfibrado</li>
-          </ul>
+          <div class="row">
+            <div class="col-12 col-md-4 mb-3 mb-md-0">
+              <div class="border rounded-3 p-2 h-100 bg-white">
+                <h6 class="fw-bold text-primary mb-2">Servicio de pintura</h6>
+                  <ul class="small ps-3 mb-0">
+                    <li>Pintado de bodegas en general</li>
+                    <li>Pintado de tanques de agua dulce, servidas, hidrocarburos</li>
+                    <li>Pintado de zonas de seguridad</li>
+                    <li>Pintado de franjas de seguridad</li>
+                    <li>Pintado y rotulado de EP</li>
+                    <li>Pintado de sala de maquinas, sentina, lazareto y pique de proa</li>
+                    <li>Pintado de motores</li>
+                    <li>Pintado de caseta, puente, almuradas y cubiertas</li>
+                    <li>Pintado de cubierta castillo</li>
+                    <li>Pintado de pangas</li>
+                    <li>Pintado de interiores de drywall, casas y departamentos</li>
+                    <li>Instalación de melamine de piso</li>
+                    <li>Pintado interior y exterior de cámaras de frio</li>
+                  </ul>
+              </div>
+            </div>
+            <div class="col-12 col-md-4 mb-3 mb-md-0">
+              <div class="border rounded-3 p-2 h-100 bg-white">
+                <h6 class="fw-bold text-success mb-2">Servicio de limpieza</h6>
+                  <ul class="small ps-3 mb-0">
+                    <li>Limpieza de bodegas</li>
+                    <li>Limpieza de tanques de agua dulce, servidas, hidrocarburos y combustible</li>
+                    <li>Limpieza de sentina y sala de maquina</li>
+                    <li>Limpieza de habitabilidad y acomodación</li>
+                    <li>Limpieza de kell cooler (panga y embarcación)</li>
+                    <li>Limpieza de pique de proa y pañol de cadenas</li>
+                    <li>Trasvase de (combustible, líquidos oleosos, aguas contaminadas) de cisternas a dinos</li>
+                    <li>Limpieza y alquiler de dinos</li>
+                  </ul>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="border rounded-3 p-2 h-100 bg-white">
+                <h6 class="fw-bold text-danger mb-2">Servicio de aislamiento</h6>
+                  <ul class="small ps-3 mb-0">
+                    <li>Aislamiento térmico de motor de la panga</li>
+                    <li>Aislamiento de motores estacionarios</li>
+                    <li>Aislamiento de motores de EP</li>
+                    <li>Insulado de fibra de mamparas y platinas de bodegas</li>
+                    <li>Fabricación de ductos de venteo en hojalata</li>
+                  </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <!-- Sección Clientes -->
@@ -142,38 +186,114 @@
           </div>
         </div>
       </section>
-      <!-- Formulario de registro de pedido de servicio -->
-      <div class="row mt-5">
-        <div class="card shadow-lg rounded-4 p-4 mb-5">
-          <div class="row">
-            <div class="col-md-6 d-flex align-items-center justify-content-center">
-              <img th:src="@{/media/formulario_imagen.jpg}" class="img-fluid rounded" alt="">
+
+      <!-- Sección Tutorial -->
+      <section id="tutorial">
+        <div class="card shadow-lg rounded-4 p-4 mb-5 bg-light border-0">
+          <div class="row align-items-center">
+            <div class="col-md-3 text-center mb-3 mb-md-0">
+              <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Tutorial Icon" class="img-fluid" style="max-width: 120px;">
             </div>
-            <div class="col-md-6">
-              <h3 class="mb-3" th:text="#{formulario.titulo}">Formulario de Registro de Pedido de Servicio</h3>
-              <form id="pedidoForm" th:action="@{/pedido}" method="post">
-                <div class="mb-3">
-                  <label for="cliente" class="form-label" th:text="#{formulario.cliente}">Cliente</label>
-                  <input type="text" class="form-control" id="cliente" name="cliente" required>
+            <div class="col-md-9">
+              <h4 class="section-title mb-3"><i class="bi bi-info-circle-fill text-primary"></i> ¿Cómo registrar un pedido de servicio?</h4>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                      <h5 class="card-title"><span class="badge bg-primary me-2">1</span>Completa el formulario</h5>
+                      <ul class="list-unstyled mb-0">
+                        <li><strong>Cliente:</strong> Nombre completo de la persona o empresa.<br><span class="text-secondary small">Ej: Juan Pérez, EMPRESA XYZ S.A.C.</span></li>
+                        <li class="mt-2"><strong>Teléfono:</strong> Número de contacto.<br><span class="text-secondary small">Ej: 999888777</span></li>
+                        <li class="mt-2"><strong>Empresa:</strong> Nombre de la empresa (opcional).<br><span class="text-secondary small">Ej: EMPRESA XYZ S.A.C.</span></li>
+                        <li class="mt-2"><strong>RUC:</strong> Número de RUC (opcional).<br><span class="text-secondary small">Ej: 20123456789</span></li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-                <div class="mb-3">
-                  <label for="servicio" class="form-label" th:text="#{formulario.servicio}">Servicio</label>
-                  <input type="text" class="form-control" id="servicio" name="servicio" required>
+                <div class="col-md-4">
+                  <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                      <h5 class="card-title"><span class="badge bg-success me-2">2</span>Elige el servicio</h5>
+                      <p class="mb-2">Puedes escribir o copiar uno de los siguientes servicios mencionados en la sección <a href="#servicios" class="fw-bold text-primary text-decoration-underline">Nuestros Servicios</a></p>
+                    </div>
+                  </div>
                 </div>
-                <div class="mb-3">
-                  <label for="telefono" class="form-label" th:text="#{formulario.telefono}">Teléfono</label>
-                  <input type="text" class="form-control" id="telefono" name="telefono" required>
+                <div class="col-md-4">
+                  <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                      <h5 class="card-title"><span class="badge bg-danger me-2">3</span>Haz clic en <span class="badge bg-primary">Registrar</span></h5>
+                      <p class="mb-2">¡Listo! Tu pedido será registrado y procesado por el equipo de <strong>SERVIMANEF E.I.R.L.</strong></p>
+                      <div class="text-center mt-3">
+                        <i class="bi bi-check-circle-fill text-success" style="font-size: 2rem;"></i>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="mb-3">
-                  <label for="empresa" class="form-label" th:text="#{formulario.empresa}">Empresa</label>
-                  <input type="text" class="form-control" id="empresa" name="empresa" required>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Fin tutorial moderno -->
+
+      <!-- Formulario de registro de pedido de servicio -->
+      <div class="row mt-5 justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="card shadow-lg border-0 rounded-5 overflow-hidden mb-5 bg-white">
+            <div class="row g-0 align-items-stretch flex-md-row-reverse">
+              <div class="col-md-6 d-flex align-items-stretch justify-content-center bg-gradient p-0" style="background: linear-gradient(135deg, #e12428 0%, #000000 100%); min-height: 400px;">
+                <img th:src="@{/media/servinamef.avif}" class="img-fluid w-100 h-100" alt="Registro de servicio" style="object-fit: cover; object-position: center; height: 100%; min-height: 400px;">
+              </div>
+              <div class="col-md-6 p-5 d-flex align-items-center">
+                <div class="w-100">   
+                  <div class="text-center mb-4">
+                    <h3 class="mb-2 fw-bold" th:text="#{formulario.titulo}">Formulario de Registro de Pedido de Servicio</h3>
+                    <p class="text-secondary">Completa los datos para solicitar tu servicio. Todos los campos son obligatorios.</p>
+                  </div>
+                  <form id="pedidoForm" th:action="@{/pedido}" method="post" class="needs-validation" novalidate autocomplete="off">
+                    <div class="row g-3">
+                      <div class="col-12">
+                        <div class="form-floating">
+                          <input type="text" class="form-control rounded-4 shadow-sm" id="cliente" name="cliente" required placeholder="Ej: Juan Pérez o EMPRESA XYZ S.A.C.">
+                          <label for="cliente" class="fw-semibold text-dark" th:text="#{formulario.cliente}">Cliente</label>
+                          <div class="invalid-feedback">Por favor ingresa el nombre del cliente.</div>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="form-floating">
+                          <input type="text" class="form-control rounded-4 shadow-sm" id="servicio" name="servicio" required placeholder="Ej: Pintado de bodegas en general">
+                          <label for="servicio" class="fw-semibold text-dark" th:text="#{formulario.servicio}">Servicio</label>
+                          <div class="invalid-feedback">Por favor ingresa el servicio solicitado.</div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="form-floating">
+                          <input type="tel" class="form-control rounded-4 shadow-sm" id="telefono" name="telefono" required pattern="[0-9]{9}" maxlength="9" placeholder="Ej: 999888777">
+                          <label for="telefono" class="fw-semibold text-dark" th:text="#{formulario.telefono}">Teléfono</label>
+                          <div class="invalid-feedback">Por favor ingresa un número de teléfono válido (9 dígitos).</div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="form-floating">
+                          <input type="text" class="form-control rounded-4 shadow-sm" id="empresa" name="empresa" required placeholder="Ej: EMPRESA XYZ S.A.C.">
+                          <label for="empresa" class="fw-semibold text-dark" th:text="#{formulario.empresa}">Empresa</label>
+                          <div class="invalid-feedback">Por favor ingresa el nombre de la empresa.</div>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="form-floating">
+                          <input type="text" class="form-control rounded-4 shadow-sm" id="ruc" name="ruc" required pattern="[0-9]{11}" maxlength="11" placeholder="Ej: 20123456789">
+                          <label for="ruc" class="fw-semibold text-dark" th:text="#{formulario.ruc}">RUC</label>
+                          <div class="invalid-feedback">Por favor ingresa un RUC válido (11 dígitos).</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-grid gap-2 mt-4">
+                      <button type="submit" class="btn btn-gradient btn-lg rounded-pill shadow fw-bold text-white" style="background: linear-gradient(90deg, #e12428 0%, #0568a6 100%); border: none;">Registrar</button>
+                    </div>
+                  </form>
                 </div>
-                <div class="mb-3">
-                  <label for="ruc" class="form-label" th:text="#{formulario.ruc}">RUC</label>
-                  <input type="text" class="form-control" id="ruc" name="ruc" required>
-                </div>
-                <button type="submit" class="btn btn-primary" th:text="#{formulario.registrar}">Registrar</button>
-              </form>
+              </div>
             </div>
           </div>
         </div>
