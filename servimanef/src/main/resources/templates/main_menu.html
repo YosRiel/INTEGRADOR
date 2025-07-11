@@ -5,65 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>INTRANET SERVIMANEF E.I.R.L.</title>
   <link rel="shortcut icon" th:href="@{/media/LOGO_SH.png}" type="image/x-icon">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <link rel="stylesheet" th:href="@{/css/syles-main-menu.css}">
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-      <a class="navbar-brand" th:href="@{/main_menu}">
-        <img th:src="@{/media/LOGO.png}" alt="Logo Servimanef">
-      </a>
-      <span class="navbar-text">
-        INTRANET SERVIMANEF E.I.R.L.
-      </span>
-      <button class="btn logout-btn ms-auto" onclick="logout()">Log Out</button>
-    </div>
+  <!-- Modern Navbar -->
+  <nav class="modern-menu-navbar">
+    <a class="modern-menu-logo" th:href="@{/main_menu}">
+      <img th:src="@{/media/LOGO.png}" alt="Logo Servimanef">
+    </a>
+    <span class="modern-menu-title">INTRANET SERVIMANEF E.I.R.L.</span>
+    <button class="modern-menu-logout" onclick="logout()">Log Out</button>
   </nav>
 
-  <!-- Main content -->
-  <div class="main-content">
-    <div class="container-fluid">
-      <div class="row g-4">
-        <div class="col-md-4">
-          <button type="button" class="card-option">
-            <a class="option-text" th:href="@{/recepcion}">
-              RECEPCIÓN<br><span>DE</span><br>SERVICIOS
-            </a>
-          </button>
-        </div>
-        <div class="col-md-4">
-          <button type="button" class="card-option">
-            <a class="option-text" th:href="@{/informes}">
-              GENERACIÓN<br><span>DE</span><br>INFORME
-            </a>
-          </button>
-        </div>
-        <div class="col-md-4">
-          <button type="button" class="card-option">
-            <a class="option-text" th:href="@{/proforma}">
-              GENERACIÓN<br><span>DE</span><br>PROFORMA
-            </a>
-          </button>
-        </div>
-      </div>
+  <!-- Modern Main Content -->
+  <div class="modern-menu-content">
+    <div class="modern-menu-options">
+      <a class="modern-menu-option" th:href="@{/recepcion}">
+        <span class="modern-menu-option-title">RECEPCIÓN</span>
+        <span class="modern-menu-option-sub">DE SERVICIOS</span>
+      </a>
+      <a class="modern-menu-option" th:href="@{/informes}">
+        <span class="modern-menu-option-title">GENERACIÓN</span>
+        <span class="modern-menu-option-sub">DE INFORME</span>
+      </a>
+      <a class="modern-menu-option" th:href="@{/proforma}">
+        <span class="modern-menu-option-title">GENERACIÓN</span>
+        <span class="modern-menu-option-sub">DE PROFORMA</span>
+      </a>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <small>SERVIMANEF E.I.R.L. - Todos los derechos reservados © 2025</small>
-    </div>
+  <!-- Modern Footer -->
+  <footer class="modern-menu-footer">
+    <small>SERVIMANEF E.I.R.L. - Todos los derechos reservados © 2025</small>
   </footer>
-  <script>
-    function logout() {
-      window.location.href = '/intranet';
-    }
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+  <script th:src="@{/js/script-main-menu.js}"></script>
 </body>
 </html>

@@ -1,0 +1,99 @@
+/* Modern main menu styles */
+body {
+    background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+.modern-menu-navbar {
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(44,62,80,0.10);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 2.5rem;
+    border-radius: 0 0 20px 20px;
+    margin-bottom: 2.5rem;
+}
+.modern-menu-logo img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.12);
+}
+.modern-menu-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0568a6;
+    letter-spacing: 1px;
+}
+.modern-menu-logout {
+    background: linear-gradient(90deg, #e12428 0%, #0568a6 100%);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(5,104,166,0.10);
+    padding: 10px 32px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.modern-menu-logout:hover, .modern-menu-logout:focus {
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #0568a6 0%, #e12428 100%);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(5,104,166,0.18);
+}
+.modern-menu-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+.modern-menu-options {
+    display: flex;
+    gap: 2.5rem;
+}
+.modern-menu-option {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(44,62,80,0.15);
+    padding: 2.5rem 2.5rem;
+    text-align: center;
+    text-decoration: none;
+    color: #0568a6;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.modern-menu-option:hover, .modern-menu-option:focus {
+    transform: scale(1.05);
+    background: linear-gradient(120deg, #e12428 0%, #0568a6 100%);
+    color: #fff;
+    box-shadow: 0 12px 32px rgba(44,62,80,0.18);
+}
+.modern-menu-option-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.modern-menu-option-sub {
+    font-size: 1.1rem;
+    color: #0568a6;
+}
+.modern-menu-footer {
+    background: #fff;
+    color: #0568a6;
+    text-align: center;
+    padding: 18px 0;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -2px 8px rgba(44,62,80,0.08);
+    margin-top: 2.5rem;
+    font-size: 1rem;
+}
