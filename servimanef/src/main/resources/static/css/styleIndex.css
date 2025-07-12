@@ -28,6 +28,10 @@ header {
     transition: all 0.3s ease-in-out; /* Efecto de aparición */
 }
 
+.lista {
+    list-style: none; /* Elimina los puntos de la lista */
+}
+
 /* Estilo para el botón INTRANET */
 .btn-intranet {
     background-color: #E12428 !important; /* Fondo rojo */
