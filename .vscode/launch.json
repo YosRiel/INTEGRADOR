@@ -8,6 +8,17 @@
             "mainClass": "com.integrador.servimanef.ServimanefApplication",
             "projectName": "servimanef",
             "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=49591 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=servimanef"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PasswordHashGenerator<servimanef>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.integrador.servimanef.config.PasswordHashGenerator",
+            "projectName": "servimanef",
+            "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
     ]

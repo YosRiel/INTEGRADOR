@@ -4,14 +4,12 @@ import com.integrador.servimanef.entity.imagen;
 import com.integrador.servimanef.entity.informe;
 import com.integrador.servimanef.entity.grupo;
 import com.integrador.servimanef.entity.pedido;
-import com.integrador.servimanef.entity.usuario;
 import com.integrador.servimanef.entity.proforma;
 import com.integrador.servimanef.service.pedidoService;
 import com.integrador.servimanef.service.informeService;
 import com.integrador.servimanef.service.grupoService;
 import com.integrador.servimanef.service.imagenService;
 import com.integrador.servimanef.service.proformaService;
-import com.integrador.servimanef.repository.usuarioRepository;
 import com.lowagie.text.Document;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfWriter;
@@ -24,16 +22,16 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 public class PageController {
-
-    @Autowired
-    private usuarioRepository usuarioRepository;
-
     @Autowired
     private pedidoService pedidoService;
     @Autowired
@@ -45,6 +43,9 @@ public class PageController {
     @Autowired
     private proformaService proformaService;
 
+
+    private static final Logger logger = LoggerFactory.getLogger(PageController.class);
+
     @GetMapping("/")
     public String index() {
         return "index";
@@ -54,19 +55,7 @@ public class PageController {
     public String intranet() {
         return "intranet";
     }
-
-    @PostMapping("/intranet/login")
-    public String login(@RequestParam String user,
-                        @RequestParam String password,
-                        Model model) {
-        usuario usuario = usuarioRepository.findByUsername(user);
-        if (usuario != null && usuario.getPassword().equals(password)) {
-            return "redirect:/main_menu";
-        } else {
-            model.addAttribute("loginError", true);
-            return "intranet";
-        }
-    }
+    
 
     @GetMapping("/main_menu")
     public String mainMenu() {
@@ -80,7 +69,7 @@ public class PageController {
     }
 
     @PostMapping("/informes/crear")
-    public String crearInforme(@RequestParam String nombre, RedirectAttributes redirectAttributes) {
+    public String crearInforme(@RequestParam String nombre, RedirectAttributes redirectAttributes, Principal principal) {
         String nombreTransformado = nombre.toUpperCase().replace(" ", "-");
         Long count = informeService.contar() + 1;
         String membrete = String.format("SM-%04d", count);
@@ -88,6 +77,8 @@ public class PageController {
         informe informe = new informe();
         informe.setNombre(membrete + "-" + nombreTransformado);
         informeService.guardar(informe);
+
+        logger.info("Usuario {} creó un informe", principal.getName());
 
         redirectAttributes.addFlashAttribute("mensaje", "Nuevo informe creado. Ingrese los grupos.");
         redirectAttributes.addFlashAttribute("informeId", informe.getId());

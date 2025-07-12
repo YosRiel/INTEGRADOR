@@ -17,9 +17,10 @@
             <img th:src="@{/media/LOGO.png}" alt="Logo de SERVIMANEF E.I.R.L." class="modern-login-logo">
             <h1 class="modern-login-title">INTRANET SERVIMANEF E.I.R.L.</h1>
             <form th:action="@{/intranet/login}" method="post" class="modern-login-form">
+                <div th:if="${param.error}" style="color:red;">Usuario o contraseña incorrectos</div>
                 <div class="modern-login-group">
-                    <label for="user" class="modern-login-label">Usuario</label>
-                    <input type="email" class="modern-login-input" id="user" name="user" required placeholder="Correo electrónico">
+                    <label for="username" class="modern-login-label">Usuario</label>
+                    <input type="text" class="modern-login-input" id="username" name="username" required placeholder="Correo electrónico">
                 </div>
                 <div class="modern-login-group">
                     <label for="password" class="modern-login-label">Contraseña</label>
