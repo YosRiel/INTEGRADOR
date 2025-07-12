@@ -1,0 +1,294 @@
+.invalid-login-input {
+    border-color: #e12428 !important;
+    box-shadow: 0 0 0 2px #e1242866 !important;
+}
+/* Modern login visual styles */
+.modern-login-bg {
+    min-height: 100vh;
+    background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modern-login-card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.15);
+    border: none;
+    max-width: 370px;
+    width: 100%;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+}
+.modern-login-logo {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.12);
+    margin-bottom: 2rem;
+}
+.modern-login-title {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #0568a6;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
+.modern-login-form {
+    width: 100%;
+}
+.modern-login-group {
+    margin-bottom: 1.3rem;
+    text-align: left;
+}
+.modern-login-label {
+    font-weight: 500;
+    color: #0568a6;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+.modern-login-input {
+    border-radius: 15px;
+    border: 1px solid #c2e9fb;
+    font-size: 1rem;
+    padding: 10px 16px;
+    width: 100%;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    outline: none;
+    margin-top: 0.2rem;
+}
+.modern-login-input:focus {
+    box-shadow: 0 0 0 2px #0568a633;
+    border-color: #0568a6;
+}
+.modern-login-checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+.modern-login-checkbox {
+    accent-color: #0568a6;
+    margin-right: 8px;
+}
+.modern-login-checkbox-label {
+    color: #0568a6;
+    font-size: 0.95rem;
+}
+.modern-login-btn {
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px rgba(5, 104, 166, 0.10);
+    background: linear-gradient(90deg, #e12428 0%, #0568a6 100%);
+    color: #fff;
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    padding: 12px 0;
+    letter-spacing: 1px;
+    width: 100%;
+    margin-bottom: 0.7rem;
+    cursor: pointer;
+}
+.modern-login-btn:hover, .modern-login-btn:focus {
+    transform: scale(1.04);
+    box-shadow: 0 4px 16px rgba(5, 104, 166, 0.18);
+    background: linear-gradient(90deg, #0568a6 0%, #e12428 100%);
+    color: #fff;
+}
+.modern-login-back {
+    margin-top: 0.5rem;
+}
+.modern-login-btn-back {
+    background: linear-gradient(90deg, #e12428 0%, #0568a6 100%);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    padding: 10px 32px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    display: inline-block;
+}
+.modern-login-btn-back:hover, .modern-login-btn-back:focus {
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #0568a6 0%, #e12428 100%);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    border: none;
+}
+/* Modern login styles */
+.modern-bg {
+    background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%) !important;
+}
+
+.modern-card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.15);
+    border: none;
+    max-width: 400px;
+    width: 100%;
+    padding: 2.5rem 2rem;
+    position: relative;
+}
+
+.modern-logo {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.12);
+    margin-bottom: 2.5rem;
+}
+.modern-title {
+    /* ...existing code... */
+    margin-bottom: 2.5rem;
+}
+
+.modern-title {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    font-weight: 700;
+    font-size: 1.7rem;
+    color: #0568a6;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
+
+.modern-form {
+    width: 100%;
+}
+
+.modern-input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.modern-input-group .modern-label {
+    width: 100%;
+    margin-bottom: 0.3rem;
+}
+.modern-input-group .modern-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #0568a6;
+    font-size: 1.2rem;
+    pointer-events: none;
+    z-index: 2;
+}
+.modern-input {
+    padding-left: 2.5rem;
+}
+.modern-label {
+    font-weight: 500;
+    color: #0568a6;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+}
+.modern-input {
+    border-radius: 15px;
+    border: 1px solid #c2e9fb;
+    padding-left: 2.2rem;
+    font-size: 1rem;
+    transition: box-shadow 0.2s;
+}
+.modern-input:focus {
+    box-shadow: 0 0 0 2px #0568a633;
+    border-color: #0568a6;
+}
+.modern-input-group i {
+    position: absolute;
+    left: 10px;
+    top: 38px;
+    color: #0568a6;
+    font-size: 1.2rem;
+}
+.modern-checkbox-group label {
+    color: #0568a6;
+    font-size: 0.95rem;
+}
+.modern-btn {
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px rgba(5, 104, 166, 0.10);
+    background: linear-gradient(90deg, #e12428 0%, #0568a6 100%);
+    color: #fff !important;
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    padding: 12px 0;
+    letter-spacing: 1px;
+}
+.modern-btn:hover, .modern-btn:focus {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(5, 104, 166, 0.18);
+    background: linear-gradient(90deg, #0568a6 0%, #e12428 100%);
+    color: #fff !important;
+}
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo general del body */
+body {
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%) !important;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Botón Submit  */
+.btn-submit {
+    background: linear-gradient(90deg, #e12428 0%, #0568a6 100%);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(5, 104, 166, 0.15);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    padding: 12px 0;
+    letter-spacing: 1px;
+}
+
+.btn-submit:hover, .btn-submit:focus {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(5, 104, 166, 0.25);
+    background: linear-gradient(90deg, #0568a6 0%, #e12428 100%);
+    color: #fff;
+    border: none;
+}
+
+/* Botón Volver*/
+.btn-volver {
+    background: linear-gradient(90deg, #e12428 0%, #0568a6 100%);
+    color: #333;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    padding: 10px 32px;
+    letter-spacing: 1px;
+}
+
+.btn-volver:hover, .btn-volver:focus {
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #0568a6 0%, #e12428 100%);
+    color: #000;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    border: none;
+}
