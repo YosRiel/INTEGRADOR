@@ -311,7 +311,7 @@ public class PageController {
                     response.setContentType("text/plain");
                     response.getWriter().write("Error al generar el PDF: " + e.getMessage());
                 } catch (IOException ioException) {
-                    // No se pudo escribir el error en la respuesta
+                    logger.error("Error al escribir la respuesta: {}", ioException.getMessage());
                 }
             }
         }
