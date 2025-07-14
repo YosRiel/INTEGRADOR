@@ -48,25 +48,31 @@ body {
 .modern-menu-content {
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 60vh;
+    align-items: stretch;
+    height: 100vh;
+    min-height: unset;
 }
 .modern-menu-options {
     display: flex;
-    gap: 2.5rem;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: stretch;
+    width: 100vw;
+    min-height: unset;
 }
 .modern-menu-option {
     background: #fff;
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(44,62,80,0.15);
-    padding: 2.5rem 2.5rem;
+    border-radius: 32px;
+    box-shadow: 0 12px 32px rgba(44,62,80,0.15);
+    padding: 4rem 6rem;
     text-align: center;
     text-decoration: none;
     color: #0568a6;
-    font-weight: 600;
-    font-size: 1.2rem;
-    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-    min-width: 200px;
+    font-weight: 70;
+    font-size: 2rem;
+    transition: transform 1s, box-shadow 1s, background 1s;
+    max-width: 100%;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -77,6 +83,24 @@ body {
     background: linear-gradient(120deg, #e12428 0%, #0568a6 100%);
     color: #fff;
     box-shadow: 0 12px 32px rgba(44,62,80,0.18);
+}
+@media (max-width: 900px) {
+    .modern-menu-content {
+        min-height: 80vh;
+    }
+    .modern-menu-options {
+        flex-direction: column;
+        gap: 2rem;
+        width: 100%;
+        align-items: center;
+    }
+    .modern-menu-option {
+        width: 90vw;
+        min-width: unset;
+        min-height: 20vh;
+        font-size: 2.2rem;
+        padding: 3rem 1rem;
+    }
 }
 .modern-menu-option-title {
     font-size: 1.3rem;

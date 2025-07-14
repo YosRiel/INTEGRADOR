@@ -52,7 +52,7 @@ header {
 }
 
 .video {
-    width: 90%;
+    width: 100%; /* Ancho completo */
     height: 315px; /* Altura fija para el video */
     border: none; /* Sin borde */
     border-radius: 10px; /* Bordes redondeados */
