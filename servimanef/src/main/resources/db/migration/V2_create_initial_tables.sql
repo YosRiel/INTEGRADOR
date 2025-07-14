@@ -66,3 +66,7 @@ INSERT INTO usuario (username, password, role) VALUES
 ('admin@servimanef.com', 'admin123', 'ADMIN'),
 ('trabajador1@servimanef.com', 'trabajador123', 'TRABAJADOR'),
 ('contador1@servimanef.com', 'contador123', 'CONTADOR');
+
+UPDATE usuario
+SET password = '$2a$10$Ok..pQkKEHzW6ljmUNxGl..JIpmpdDeriEqQcLQUVy5bMGOTRbx7y'
+WHERE username = 'admin@servimanef.com';
