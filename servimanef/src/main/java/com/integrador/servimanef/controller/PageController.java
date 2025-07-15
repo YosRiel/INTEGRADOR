@@ -19,10 +19,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.security.Principal;
 
 import java.io.IOException;
 import java.util.List;
@@ -62,68 +59,7 @@ public class PageController {
         return "main_menu";
     }
 
-    @GetMapping("/informes")
-    public String informes(Model model) {
-        model.addAttribute("informes", informeService.listarTodos());
-        return "informes";
-    }
-
-    @PostMapping("/informes/crear")
-    public String crearInforme(@RequestParam String nombre, RedirectAttributes redirectAttributes, Principal principal) {
-        String nombreTransformado = nombre.toUpperCase().replace(" ", "-");
-        Long count = informeService.contar() + 1;
-        String membrete = String.format("SM-%04d", count);
-
-        informe informe = new informe();
-        informe.setNombre(membrete + "-" + nombreTransformado);
-        informeService.guardar(informe);
-
-        logger.info("Usuario {} creó un informe", principal.getName());
-
-        redirectAttributes.addFlashAttribute("mensaje", "Nuevo informe creado. Ingrese los grupos.");
-        redirectAttributes.addFlashAttribute("informeId", informe.getId());
-        return "redirect:/informes/" + informe.getId() + "/grupos";
-    }
-
-    @GetMapping("/informes/{id}/grupos")
-    public String mostrarFormularioGrupo(@PathVariable Long id, Model model) {
-        informe informe = informeService.buscarPorId(id).orElseThrow();
-        List<grupo> grupos = grupoService.listarPorInformeId(id);
-        model.addAttribute("informe", informe);
-        model.addAttribute("grupos", grupos);
-        return "grupos";
-    }
-
-    @PostMapping("/informes/{id}/grupos/crear")
-    public String crearGrupo(@PathVariable Long id,
-                             @RequestParam String nombreGrupo,
-                             @RequestParam(required = false) String descripcion,
-                             @RequestParam("imagenes") MultipartFile[] imagenes,
-                             @RequestParam Integer cantidadImagenes,
-                             RedirectAttributes redirectAttributes) throws IOException {
-        informe informe = informeService.buscarPorId(id).orElseThrow();
-
-        grupo grupo = new grupo();
-        grupo.setInforme(informe);
-        grupo.setNombreGrupo(nombreGrupo);
-        grupo.setDescripcion(descripcion);
-        grupo.setCantidadImagenes(cantidadImagenes);
-
-        grupo = grupoService.guardar(grupo);
-
-        for (MultipartFile file : imagenes) {
-            if (!file.isEmpty()) {
-                imagen imagen = new imagen();
-                imagen.setDatos(file.getBytes());
-                imagen.setTipo(file.getContentType());
-                imagen.setGrupo(grupo);
-                imagenService.guardar(imagen);
-            }
-        }
-
-        redirectAttributes.addFlashAttribute("mensaje", "Grupo agregado correctamente.");
-        return "redirect:/informes/" + id + "/grupos";
-    }
+    
 
     @GetMapping("/recepcion")
     public String recepcion(Model model) {
